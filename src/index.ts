@@ -1,6 +1,5 @@
 import express from "express"
 import mongoose from "mongoose"
-import { faker } from '@faker-js/faker';
 
 import userRouter from "./routes/user"
 import authRouter from "./routes/auth"
@@ -47,4 +46,4 @@ app.listen(8080, () => {
     console.log("Server is running on port 8080");      
 })
 
-export default app;
+// export default app;
