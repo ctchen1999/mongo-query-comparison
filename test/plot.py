@@ -65,16 +65,13 @@ def read_last_line(filepath):
 def get_response_time_list(file_patterns):
     response_times = []
     for pattern in file_patterns:
-        files = glob.glob(pattern)  # Find files matching the pattern
-        files.sort()  # Sort files alphabetically if multiple match
-
-        for file in files:
-            filepath = file  # Use the filename directly
-            last_line = read_last_line(filepath)
-            if last_line is not None:
-                response_times.append(last_line)
-            else:
-                response_times.append(None)  # Append None if reading fails
+        # Look for the file pattern in the current directory
+        filepath = pattern  # Use the filename directly since it's the exact path
+        last_line = read_last_line(os.path.join("test", filepath))
+        if last_line is not None:
+            response_times.append(last_line)
+        else:
+            response_times.append(None)  # Append None if reading fails
     return response_times
 
 # Collect the last response times
