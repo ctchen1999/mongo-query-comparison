@@ -1,0 +1,25 @@
+@startuml mongoose_model
+!define ENTITY(x) class x << (E,#FFAAAA) >>
+
+ENTITY(Favorites) {
+    + _id : ObjectId
+    + userId : ObjectId
+    + movieId : Number
+}
+
+ENTITY(Auth) {
+    + _id : ObjectId
+    + name : String [unique]
+    + email : String
+}
+
+ENTITY(Users) {
+    + _id : ObjectId
+    + authId : ObjectId [unique] (Auth)
+    + favorites : ObjectId[] (Favorite)
+    + ratings : Map<string, Number>
+}
+
+Users --> Auth : ref (Auth)
+Users --> "*" Favorites : ref (Favorites)
+@enduml
